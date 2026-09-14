@@ -18,12 +18,38 @@
     </Design.DataContext>
     <StackPanel>
 
-        <Grid ColumnDefinitions="*,3*"
-              RowDefinitions="Auto,150"
+        <Grid ColumnDefinitions="*,2*"
+              RowDefinitions="Auto,Auto,Auto,Auto"
               >
-            <TextBlock Text="Cookie Clicker" HorizontalAlignment="Center" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,5"></TextBlock>
+            <TextBlock Text="Cookie Clicker"
+                       HorizontalAlignment="Center"
+                       Grid.Row="0"
+                       Grid.ColumnSpan="2"
+                       Margin="0,0,0,5"
+                       ></TextBlock>
 
-            <TextBlock Text="{Binding CookieCount}" Grid.Row="1" HorizontalAlignment="Center" Margin="0 5"></TextBlock>
+            <TextBlock Text="{Binding CookieCount, StringFormat='Cookies: {0:0.0}'}"
+                       Grid.Row="1"
+                       HorizontalAlignment="Center"
+                       Margin="0 5"
+                       ></TextBlock>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="1"
+                        Margin="0 20 "
+                        HorizontalAlignment="Center"
+                        >
+
+                <TextBlock Text="{Binding PerClick, StringFormat='click: {0:0.0}'}"
+                           Grid.Row="1"
+                           HorizontalAlignment="Center"
+                           Margin="0 5"
+                           ></TextBlock>
+                <TextBlock Text="{Binding Cps, StringFormat='|cps: {0:0.0}'}"
+                           Grid.Row="1"
+                           HorizontalAlignment="Center"
+                           Margin="0 5"
+                           ></TextBlock>
+            </StackPanel>
 
             <Button Grid.Row="2"
                     HorizontalAlignment="Center"
@@ -33,7 +59,11 @@
                     Grid.Column="0"
                     Command="{Binding OnCookieClick}"
                     >
-                <TextBlock Text="click!" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="click!"
+                           Grid.Row="1"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           ></TextBlock>
             </Button>
 
             <Button Grid.Row="2"
@@ -41,9 +71,28 @@
                     Grid.Column="1"
                     Command="{Binding OnUpgradeClick}"
                     >
-                <StackPanel Grid.RowSpan="3" VerticalAlignment="Stretch">
-                    <TextBlock Text="Upgrade Clicks" Grid.Row="1"></TextBlock>
-                    <TextBlock Text="Для апгрейда нужно: 50"></TextBlock>
+                <StackPanel
+                    VerticalAlignment="Stretch"
+                    >
+                    <TextBlock Text="Upgrade Clicks +0.1"
+                               ></TextBlock>
+                    <TextBlock Text="{Binding UpgradePrice, StringFormat='Need: {0:0.0}'}"></TextBlock>
+                    <TextBlock Text="{Binding UpgradeLevel, StringFormat='Level: {0:0}'}"></TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button Grid.Row="3"
+                    HorizontalAlignment="Right"
+                    Grid.Column="1"
+                    Command="{Binding OnUpgradeCpsClick}"
+                    >
+                <StackPanel
+                    VerticalAlignment="Stretch"
+                    >
+                    <TextBlock Text="Upgrade CPS +0.1"
+                               ></TextBlock>
+                    <TextBlock Text="{Binding CpsUpgradePrice, StringFormat='Need: 0'}"></TextBlock>
+                    <TextBlock Text="{Binding CpsUpgradeLevel, StringFormat='Level: 0'}"></TextBlock>
                 </StackPanel>
             </Button>
 
