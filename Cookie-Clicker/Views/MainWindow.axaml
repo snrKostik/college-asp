@@ -1,0 +1,52 @@
+<Window
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:Cookie_Clicker.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignWidth="400"
+    d:DesignHeight="400"
+    x:Class="Cookie_Clicker.Views.MainWindow"
+    x:DataType="vm:MainViewModel"
+    Icon="/Assets/avalonia-logo.ico"
+    Title="Cookie_Clicker">
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+        to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainViewModel />
+    </Design.DataContext>
+    <StackPanel>
+
+        <Grid ColumnDefinitions="*,3*"
+              RowDefinitions="Auto,150"
+              >
+            <TextBlock Text="Cookie Clicker" HorizontalAlignment="Center" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,5"></TextBlock>
+
+            <TextBlock Text="{Binding CookieCount}" Grid.Row="1" HorizontalAlignment="Center" Margin="0 5"></TextBlock>
+
+            <Button Grid.Row="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="64"
+                    Height="64"
+                    Grid.Column="0"
+                    Command="{Binding OnCookieClick}"
+                    >
+                <TextBlock Text="click!" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+            </Button>
+
+            <Button Grid.Row="2"
+                    HorizontalAlignment="Right"
+                    Grid.Column="1"
+                    Command="{Binding OnUpgradeClick}"
+                    >
+                <StackPanel Grid.RowSpan="3" VerticalAlignment="Stretch">
+                    <TextBlock Text="Upgrade Clicks" Grid.Row="1"></TextBlock>
+                    <TextBlock Text="Для апгрейда нужно: 50"></TextBlock>
+                </StackPanel>
+            </Button>
+
+        </Grid>
+    </StackPanel>
+</Window>
